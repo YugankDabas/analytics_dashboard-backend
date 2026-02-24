@@ -69,6 +69,27 @@ uvicorn app.main:app --reload
 ```
 The API will be available at `http://localhost:8000`. Documentation (Swagger UI) is available at `http://localhost:8000/docs`.
 
+## 🌐 Deployment (Render)
+
+To deploy this project successfully on Render:
+
+1.  **Using Blueprint (Recommended):**
+    - Connect your GitHub repository to Render.
+    - Render will automatically detect the `render.yaml` file and configure the service.
+2.  **Manual Configuration:**
+    - **Service Type:** Web Service
+    - **Runtime:** Python
+    - **Build Command:** `pip install -r requirements.txt`
+    - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+    - **Environment Variables:**
+        - `DATABASE_URL`: Your Neon DB connection string.
+        - `SECRET_KEY`: A random strong secret.
+        - `ALGORITHM`: `HS256`
+        - `ACCESS_TOKEN_EXPIRE_MINUTES`: `60`
+        - `BACKEND_CORS_ORIGINS`: `["*"]` (or specific frontend URLs)
+
+---
+
 ## 📡 API Endpoints
 
 ### Authentication
